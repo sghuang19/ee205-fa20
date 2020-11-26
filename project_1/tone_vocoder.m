@@ -3,7 +3,7 @@
 %                  Last updated Nov. 27, 2020
 % =================================================================
 
-function sig = tone_vocoder(x, Fs, N, fc)
+function sig = tone_vocoder(x, Fs, N, Fc)
     % tone_vocoder - the main function
     %
     % input -
@@ -17,7 +17,7 @@ function sig = tone_vocoder(x, Fs, N, fc)
 
     x = x';
     sig = zeros(1, length(x));
-    [LPF_b, LPF_a] = butter(4, fc / (Fs / 2));
+    [LPF_b, LPF_a] = butter(4, Fc / (Fs / 2));
 
     for index = 1:N
         [low, high] = passband(N, index);
