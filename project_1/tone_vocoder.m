@@ -1,6 +1,6 @@
 % =================================================================
 %                   Written by Samuel Huang
-%                  Last updated Nov. 27, 2020
+%                  Last update Nov. 27, 2020
 % =================================================================
 
 function sig = tone_vocoder(x, Fs, N, Fc)
@@ -31,10 +31,11 @@ function sig = tone_vocoder(x, Fs, N, Fc)
         f = (low + high) / 2;
         sine_wave = sin(2 * pi * f * dt);
         s = sine_wave .* env;
-        s = s / norm(s) * norm(x);
+        % s = s / norm(s) * norm(x);
         sig = sig + s;
     end
 
+    sig = sig / norm(sig) * norm(x);
 end
 
 function [low, high] = passband(N, index)
