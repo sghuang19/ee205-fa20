@@ -1,4 +1,5 @@
 % =================================================================
+% 
 %                   Written by Samuel Huang
 %                  Last update Nov. 27, 2020
 % =================================================================
@@ -31,7 +32,6 @@ function sig = tone_vocoder(x, Fs, N, Fc)
         f = (low + high) / 2;
         sine_wave = sin(2 * pi * f * dt);
         s = sine_wave .* env;
-        % s = s / norm(s) * norm(x);
         sig = sig + s;
     end
 
