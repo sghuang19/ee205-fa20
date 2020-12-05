@@ -5,6 +5,8 @@ The report for the first project of Signals and Systems lab session, written by 
 - HUANG Guanchao, SID 11912309 from SME
 - GONG Xinrui, SID 11911233 from BME
 
+The complete resources, including report in `.pdf` and `.md` format, as well as all MATLAB scripts, can be retrieved at [our GitHub repo](https://github.com/SamuelHuang2019/ss-project).
+
 ---
 
 ## Introduction
