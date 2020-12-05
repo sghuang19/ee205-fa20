@@ -56,6 +56,12 @@ Effects of Low-Pass Filtering on Acoustic Analysis of Voice, *Journal of Voice*,
 
 The experimental results presented by Drullman, Festen and Plomp[^Drullman] took one step further in the discussion of the relationship between the sentence intelligibility number of bands and cutoff frequency chosen.
 
+>"Amplitude fluctuations in successive $1/4$-, $1/2$-, or $1$-oct frequency bands can be limited to about $16\mathrm{Hz}$ without substantial reduction of speech intelligibility for normal-hearing listeners."
+>
+>"Listeners can only partially understand speech in quiet when the amplitude fluctuations are limited to $2\mathrm{Hz}$; performance improves as broader frequency bands are used"
+>
+>...
+
 <!-- 来自“随意的没看过的高引用参考” -->
 
 [^Drullman]: Drullman, R., Festen, J. M., & Plomp, R. (1994). Effect of temporal envelope smearing on speech reception. *The Journal of the Acoustical Society of America*, 95(2), 1053–1064.
