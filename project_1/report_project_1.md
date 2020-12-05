@@ -91,6 +91,8 @@ end
 
 ## Data and Figures
 
+![example](https://raw.githubusercontent.com/SamuelHuang2019/ss-project/master/project_1/figures/task_1.png)
+
 ---
 
 ## Discussion
