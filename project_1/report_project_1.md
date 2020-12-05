@@ -15,6 +15,51 @@ The complete resources, including report in `.pdf` and `.md` format, as well as 
 
 ## Background
 
+### Feasibility
+
+By Fourier’s transformation, signals can be decomposed into a sum of sinusoids of different frequencies. This is especially relevant with human hearing, since the inner ear performs a form of mechanical Fourier transform by mapping frequencies along the length of the cochlear partition. Our work is based on the idea proposed by Hilbert[^Hilbert], a signal can be factored into the product of a slowly varying envelope and a rapidly varying fine time structure.
+
+[^Hilbert]: Hilbert, D. *Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen* (Teubner, Leipzig, 1912).
+
+According to the research done by Smith, Delgutte and Oxenham[^Smith],
+
+>"Envelope is most important for speech reception, and the fine structure is most important for pitch perception and sound localization. When the two features are in conflict, the sound of speech is heard at a location determined by the fine structure, but the words are identified according to the envelope."
+>
+>![Auditory Chimaera Synthesis](https://raw.githubusercontent.com/SamuelHuang2019/ss-project/master/project_1/figures/auditory_chimaera_synthesis.png)
+>
+>The figure exhibits how auditory chimaera synthesis is done clearly.
+
+This indicates that we should focus on the envelope extracted to improve the distinguishability of the synthesized speech signal, and focus on the fine structure for better pitch and tone performance.
+
+<!-- 来自“确定有用的参考论文” -->
+
+[^Smith]: Smith, Z. M., Delgutte, B., & Oxenham, A. J. (2002). Chimaeric sounds reveal dichotomies in auditory perception. *Nature*, 416(6876), 87–90.
+
+The research done by Shannon et al.[^Shannon] provides a conciser instruction for our project.
+
+>"The identification of consonants, vowels, and words in simple sentences improved markedly as the number of bands increased"
+
+The feasibility of recognizing speech signal with "greatly reduced spectral information" is well proved.
+
+<!-- 来自“参考论文” -->
+
+[^Shannon]: Vongphoe, M., & Zeng, F. G. (2005). Speaker recognition with temporal cues in acoustic and electric hearing. *The Journal of the Acoustical Society of America*, 118(2), 1055–1061.
+
+### Practice
+
+A research by MacCallum et al.[^MacCallum] provides us with the instructions for setting the cutoff frequency of the low-pass filter.
+
+>"To ensure accuracy in acoustic voice analysis, setting the cutoff frequency of a low-pass filter at least one octave above the fundamental frequency (minimum of $300\mathrm{Hz}$) is recommended."
+
+[^MacCallum]: Julia K. MacCallum, Aleksandra E. Olszewski, Yu Zhang, Jack J. Jiang,
+Effects of Low-Pass Filtering on Acoustic Analysis of Voice, *Journal of Voice*, Volume 25, Issue 1, 2011, Pages 15-20.
+
+The experimental results presented by Drullman, Festen and Plomp[^Drullman] took one step further in the discussion of the relationship between the sentence intelligibility number of bands and cutoff frequency chosen.
+
+<!-- 来自“随意的没看过的高引用参考” -->
+
+[^Drullman]: Drullman, R., Festen, J. M., & Plomp, R. (1994). Effect of temporal envelope smearing on speech reception. *The Journal of the Acoustical Society of America*, 95(2), 1053–1064.
+
 ---
 
 ## Methodology
