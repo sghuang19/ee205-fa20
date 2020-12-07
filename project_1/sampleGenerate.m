@@ -7,20 +7,49 @@ SSN=SSN/norm(SSN)*norm(x)*10^(0.25);%adjust intensity of SSN;
 sig=x+SSN;
 sig=sig/norm(sig)*norm(x);
 
-%Fix LPF=i00Hz and vary number of parallel bands 
+
+%Fix LPF=50Hz and vary number of parallel bands 
 n=1;
-for i=1:7
-    res=vocoder(100,n,x,fs);
+A=[1 2 4 6 8];
+for i=1:5
+    res=vocoder(50,A(i),x,fs);
     %audiowrite(strcat('LPF100_n',sprintf('%d',n),'_raw.wav'),res,fs);
-    n=n*2;
+    [Pyy,wh]=periodogram(res,[],512,fs);
+    figure;
+    subplot(412);plot(res);
+    xlabel('Time');ylabel('output');
+    title(strcat('N=',sprintf('%d',A(i))));
+    subplot(411);plot(x);
+      xlabel('Time');ylabel('output');
+    title('original signal');
+    subplot(414); plot(wh,10*log10(Pyy));
+      xlabel('Frequency');ylabel('PSD');
+    title(strcat('PSD of N=',sprintf('%d',A(i))));
+    subplot(413);plot(w,10*log10(Pxx));
+      xlabel('Frequency');ylabel('PSD');
+    title('PSD of original signal');
 end
 
+%task2
 %Fix parallel bands=12 and vary LPF 
-h=100;
-for i=1:7
-    res=vocoder(h,12,x,fs);
+B=[20 50 100 400];
+for i=1:4
+    res=vocoder(B(i),4,x,fs);
     %audiowrite(strcat('LPF',sprintf('%d',h),'_n=12_raw.wav'),res,fs);
-    h=h*2;
+    [Pyy,wh]=periodogram(res,[],512,fs);
+    figure;
+    subplot(412);plot(res);
+    xlabel('Time');ylabel('output');
+    title(strcat('f_c_u_t=',sprintf('%d',B(i))));
+    subplot(411);plot(x);
+      xlabel('Time');ylabel('output');
+    title('original signal');
+    subplot(414); plot(wh,10*log10(Pyy));
+      xlabel('Frequency');ylabel('PSD(dB)');
+    title(strcat('PSD of f_c_u_t=',sprintf('%d',B(i))));
+    subplot(413);plot(w,10*log10(Pxx));
+      xlabel('Frequency');ylabel('PSD(dB)');
+    title('PSD of original signal');
 end
 %we find that with a big N,the increase in LPF dont't make too much changes
 
@@ -34,22 +63,49 @@ end
 %By varying the product,we find though it's not the same,we can understand
 %the meaing.And the Threshold may be 1000
 
+%task3
 %Now we add the noise and find what will happen
 %Fix LPF=i00Hz and vary number of parallel bands 
-n=1;
-for i=1:7
-    res=vocoder(100,n,sig,fs);
+
+for i=1:5
+    res=vocoder(50,A(i),sig,fs);
     %audiowrite(strcat('LPF100_n',sprintf('%d',n),'_edited.wav'),res,fs);
-    n=n*2;
+    [Pyy,wh]=periodogram(res,[],512,fs);
+    figure;
+    subplot(412);plot(res);
+    xlabel('Time');ylabel('output');
+    title(strcat('N=',sprintf('%d',A(i))));
+    subplot(411);plot(x);
+      xlabel('Time');ylabel('output');
+    title('original speech shaped noise');
+    subplot(414); plot(wh,10*log10(Pyy));
+      xlabel('Frequency');ylabel('PSD');
+    title(strcat('PSD of N=',sprintf('%d',A(i))));
+    subplot(413);plot(w,10*log10(Pxx));
+      xlabel('Frequency');ylabel('PSD');
+    title('PSD of original speech shaped noise');
 end
 %larger n,clearer the voice
 
 %Fix parallel bands=12 and vary LPF 
-h=100;
-for i=1:7
-    res=vocoder(h,12,sig,fs);
+
+for i=1:4
+    res=vocoder(B(i),4,sig,fs);
     %audiowrite(strcat('LPF',sprintf('%d',h),'_n=12_edited.wav'),res,fs);
-    h=h*2;
+    [Pyy,wh]=periodogram(res,[],512,fs);
+    figure;
+    subplot(412);plot(res);
+    xlabel('Time');ylabel('output');
+    title(strcat('f_c_u_t=',sprintf('%d',B(i))));
+    subplot(411);plot(x);
+      xlabel('Time');ylabel('output');
+    title('original speech shaped noise');
+    subplot(414); plot(wh,10*log10(Pyy));
+      xlabel('Frequency');ylabel('PSD(dB)');
+    title(strcat('PSD of f_c_u_t=',sprintf('%d',B(i))));
+    subplot(413);plot(w,10*log10(Pxx));
+      xlabel('Frequency');ylabel('PSD(dB)');
+    title('PSD of original speech shaped noise');speech shaped noisespeech shaped noise
 end
 %roughly the voice don't change too much with the increase of LPF,while the
 %noise gets noiser,which means we needn't make the LPF too high
