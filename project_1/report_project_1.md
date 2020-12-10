@@ -25,7 +25,7 @@ According to the research done by Smith, Delgutte and Oxenham[^Smith],
 
 >"Envelope is most important for speech reception, and the fine structure is most important for pitch perception and sound localization. When the two features are in conflict, the sound of speech is heard at a location determined by the fine structure, but the words are identified according to the envelope."
 >
->![Auditory Chimaera Synthesis](https://raw.githubusercontent.com/SamuelHuang2019/ss-project/master/project_1/figures/auditory_chimaera_synthesis.png)
+>![Auditory Chimaera Synthesis](figures/auditory_chimaera_synthesis.png)
 >
 >The figure exhibits how auditory chimaera synthesis is done clearly.
 
@@ -96,7 +96,7 @@ sync=sync/norm(sync)*norm(sig);
 end
 ```
 
-Then we use circulation to generate the signal after different resynthesis and their power spectrum density. 
+Then we use circulation to generate the signal after different resynthesis and their power spectrum density.
 In task1, we set LPF to be 50 Hz and vary the number of divided bands.
 The figures below are the comparison of audio waves of synthesized sentence and their PSDs (unit: dB) with different numbers of bands N=1,2,4,6,8 and same cutting frequency F=50Hz.
 
@@ -106,21 +106,19 @@ Comparing the plots of the original signal and the synthesis signal, we can see 
 
 Comparing the PSD of them, we can tell the main frequency of synthesis signal is exactly corresponding to the frequency of the middle frequency of divided band.
 
-And the number of pitch is equal to the number of bands. Whatever, since the filters here are all not ideal, then other frequency still exists. 
+And the number of pitch is equal to the number of bands. Whatever, since the filters here are all not ideal, then other frequency still exists.
 
 The plot for the speech signals are shown below.
 
-![task1-N=1](https://raw.githubusercontent.com/SamuelHuang2019/ss-project/master/project_1/figures/task_1_N=1.png)
+![task1-N=1](figures/task_1_N=1.png)
 
-![task1-N=2](https://raw.githubusercontent.com/SamuelHuang2019/ss-project/master/project_1/figures/task_1_N=2.png)
+![task1-N=2](figures/task_1_N=2.png)
 
-![task1-N=4](https://raw.githubusercontent.com/SamuelHuang2019/ss-project/master/project_1/figures/task_1_N=4.png)
+![task1-N=4](figures/task_1_N=4.png)
 
-![task1-N=6](https://raw.githubusercontent.com/SamuelHuang2019/ss-project/master/project_1/figures/task_1_N=6.png)
+![task1-N=6](figures/task_1_N=6.png)
 
-![task1-N=8](https://raw.githubusercontent.com/SamuelHuang2019/ss-project/master/project_1/figures/task_1_N=8.png)
-
-
+![task1-N=8](figures/task_1_N=8.png)
 
 ---
 
@@ -130,7 +128,7 @@ In this task, instead of changing the number of bands, we try to figure out the 
 
 From the plots, we can easily see that the power spectrum intensity of the speech signal after processing have four peak, since it is matched with four sine signals in different frequency range. With the increase in cut-off frequency, the intensity is getting higher, this is because with higher cut-off frequency for a low pass filter, the more high frequency area it can pass, thus more details are shown.
 
-After hearing the resulting signal, we can make a further conclusion that the higher the cutoff frequency, the easier for listener to understand the meaning of the speech signal. 
+After hearing the resulting signal, we can make a further conclusion that the higher the cutoff frequency, the easier for listener to understand the meaning of the speech signal.
 
 To test our result, we invited five volunteers to hear the four resulting signals,we find that only when N = 400 that the listeners can understand the meaning.
 
@@ -162,7 +160,7 @@ sync=sync/norm(sync)*norm(sig);
 end
 ```
 
-Then we use circulation to generate the signal after different resynthesis and their power spectrum density. 
+Then we use circulation to generate the signal after different resynthesis and their power spectrum density.
 In task1, we set LPF to be 50 Hz and vary the number of divided bands.
 The figures below are the comparison of audio waves of synthesized sentence and their PSDs (unit: dB) with different numbers of bands N=1,2,4,6,8 and same cutting frequency F=50Hz.
 
@@ -172,7 +170,7 @@ Comparing the plots of the original signal and the synthesis signal, we can see 
 
 Comparing the PSD of them, we can tell the main frequency of synthesis signal is exactly corresponding to the frequency of the middle frequency of divided band.
 
-And the number of pitch is equal to the number of bands. Whatever, since the filters here are all not ideal, then other frequency still exists. 
+And the number of pitch is equal to the number of bands. Whatever, since the filters here are all not ideal, then other frequency still exists.
 
 ---
 
@@ -182,7 +180,7 @@ In this task, base on task 2, we add white noise into the resulting signals.The 
 
 However, after adding white noise, we can also find out that for the PSD plot, intensity in frequencies away from peaks get higher in general. We think it is because the white noise have an even energy in all frequencies, so the total energy in all frequencies will be higher after adding white noise.
 
-After hearing the signals, we find that for the first three results, which is when f_stop = 20Hz, 50Hz and 100Hz. The voice seems to be covered totally by white noise, the only result we enable to hear the content is the one that with cutoff frequency 400Hz. 
+After hearing the signals, we find that for the first three results, which is when f_stop = 20Hz, 50Hz and 100Hz. The voice seems to be covered totally by white noise, the only result we enable to hear the content is the one that with cutoff frequency 400Hz.
 
 ---
 
@@ -258,7 +256,7 @@ end
 
 ## Data and Figures
 
-![example](https://raw.githubusercontent.com/SamuelHuang2019/ss-project/master/project_1/figures/task_1.png)
+![example](figures/task_1.png)
 
 ---
 
