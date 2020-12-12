@@ -18,3 +18,4 @@ end
 sync=sync/norm(sync)*norm(sig);
 end
 
+
