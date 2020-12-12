@@ -128,11 +128,22 @@ The plot for the speech signals are shown below.
 
 In this task, instead of changing the number of bands, we try to figure out the effect of cut-off frequency towards the speech signal. The plots show the figure of speech signal pass through low pass filters with cut-0ff frequency as 20Hz, 50 Hz, 100 Hz and 200 Hz.
 
+The plots are shown below.
+
+![task2-COF=20](figures/task_2_COF=20.png)
+
+![task2-COF=50](figures/task_2_COF=50.png)
+
+![task2-COF=100](figures/task_2_COF=100.png)
+
+![task2-COF=400](figures/task_2_COF=400.png)
+
 From the plots, we can easily see that the power spectrum intensity of the speech signal after processing have four peak, since it is matched with four sine signals in different frequency range. With the increase in cut-off frequency, the intensity is getting higher, this is because with higher cut-off frequency for a low pass filter, the more high frequency area it can pass, thus more details are shown.
 
 After hearing the resulting signal, we can make a further conclusion that the higher the cutoff frequency, the easier for listener to understand the meaning of the speech signal.
 
 To test our result, we invited five volunteers to hear the four resulting signals,we find that only when N = 400 that the listeners can understand the meaning.
+
 
 ---
 
@@ -168,6 +179,18 @@ The figures below are the comparison of audio waves of synthesized sentence and 
 
 For different generated sentences, we forecasted the sentences to 5 volunteers to find the intelligibility of different numbers of bands. The result is they can not figure out what the sentences exactly were saying for all the signals. But they can figure out the similar voice’s characters at N=6 and N=8 such as numbers of words, the up-down tone of voices and so on.
 
+![task3-N=1](figures/task_3_N=1.png)
+
+![task3-N=2](figures/task_3_N=2.png)
+
+![task3-N=4](figures/task_3_N=4.png)
+
+![task3-N=6](figures/task_3_N=6.png)
+
+![task3-N=8](figures/task_3_N=8.png)
+
+![task3-N=16](figures/task_3_N=16.png)
+
 Comparing the plots of the original signal and the synthesis signal, we can see that when N is growing bigger, the details of signals are shown more. This is because the variety of frequency of the components(sine-waves) is richer when N is growing.  
 
 Comparing the PSD of them, we can tell the main frequency of synthesis signal is exactly corresponding to the frequency of the middle frequency of divided band.
@@ -179,6 +202,16 @@ And the number of pitch is equal to the number of bands. Whatever, since the fil
 ### Task 4
 
 In this task, base on task 2, we add white noise into the resulting signals.The plot for PSD still have four peak, since we cut it into four signals, processing them and add them up. And with higher cutoff frequency, the intensity is higher in general.
+
+The plots are shown below.
+
+![task4-COF=20](figures/task_4_COF=20.png)
+
+![task4-COF=50](figures/task_4_COF=50.png)
+
+![task4-COF=100](figures/task_4_COF=100.png)
+
+![task4-COF=400](figures/task_4_COF=400.png)
 
 However, after adding white noise, we can also find out that for the PSD plot, intensity in frequencies away from peaks get higher in general. We think it is because the white noise have an even energy in all frequencies, so the total energy in all frequencies will be higher after adding white noise.
 
