@@ -21,6 +21,9 @@ sync1=sync1/norm(sync1)*norm(sig);
 audiowrite('T3_Sync_N=1.wav',sync1,fs);
 %plot(sync1);
 %sound(sync1,fs);
+[Pxx1,w1] = periodogram(sync1,[], 512, fs);
+[Pxx0,w0] = periodogram(x,[], 512, fs);
+
 
 %N=2
 sync2=[zeros(1,length(sig))]';
@@ -38,6 +41,8 @@ sync2=sync2/norm(sync2)*norm(sig);
 audiowrite('T3_Sync_N=2.wav',sync2,fs);
 %plot(sync2);
 %sound(sync2,fs);
+[Pxx2,w2] = periodogram(sync2,[], 512, fs);
+
 
 %N=4
 sync4=[zeros(1,length(sig))]';
@@ -56,6 +61,9 @@ sync4=sync4/norm(sync4)*norm(sig);
 audiowrite('T3_Sync_N=4.wav',sync4,fs);
 %sound(sync4,fs);
 
+[Pxx4,w4] = periodogram(sync4,[], 512, fs);
+
+
 %N=6
 sync6=[zeros(1,length(sig))]';
 for i=1:6
@@ -72,6 +80,10 @@ sync6=sync6/norm(sync6)*norm(sig);
 %plot(sync6);
 audiowrite('T3_Sync_N=6.wav',sync6,fs);
 %sound(sync6,fs);
+
+[Pxx6,w6] = periodogram(sync6,[], 512, fs);
+
+
 
 %N=8
 sync8=[zeros(1,length(sig))]';
@@ -90,6 +102,9 @@ sync8=sync8/norm(sync8)*norm(sig);
 audiowrite('T3_Sync_N=8.wav',sync8,fs);
 %sound(sync8,fs);
 
+[Pxx8,w8] = periodogram(sync8,[], 512, fs);
+
+
 %N=16
 sync16=[zeros(1,length(sig))]';
 for i=1:16
@@ -106,3 +121,45 @@ sync16=sync16/norm(sync16)*norm(sig);
 %plot(sync6);
 audiowrite('T3_Sync_N=16.wav',sync16,fs);
 %sound(sync6,fs);
+
+[Pxx16,w16] = periodogram(sync16,[], 512, fs);
+
+figure;
+subplot(411)
+plot(x)
+title('Original Signal')
+xlabel('Time')
+subplot(412)
+plot(sync16)
+title('Result COF = 50Hz,N = 16')
+xlabel('Time')
+subplot(413)
+plot(w0,10*log10(Pxx0))
+title('Original Signal PSD')
+xlabel('Frequency')
+ylabel('Magnitude(dB)')
+subplot(414)
+plot(w16,10*log10(Pxx16))
+title('Resulted PSD')
+xlabel('Frequency')
+ylabel('Magnitude(dB)')
+
+% figure;
+% subplot(6,1,1)
+% plot(w1,10*log10(Pxx1))
+% title('N = 1')
+% subplot(6,1,2)
+% plot(w2,10*log10(Pxx2))
+% title('N = 2')
+% subplot(6,1,3)
+% plot(w4,10*log10(Pxx4))
+% title('N = 4')
+% subplot(6,1,4)
+% plot(w6,10*log10(Pxx6))
+% title('N = 6')
+% subplot(6,1,5)
+% plot(w8,10*log10(Pxx8))
+% title('N = 8')
+% subplot(6,1,6)
+% plot(w16,10*log10(Pxx16))
+% title('N = 16')
