@@ -53,7 +53,8 @@ A research by MacCallum et al.[^MacCallum] provides us with the instructions for
 
 >"To ensure accuracy in acoustic voice analysis, setting the cutoff frequency of a low-pass filter at least one octave above the fundamental frequency (minimum of $300\mathrm{Hz}$) is recommended."
 
-[^MacCallum]: Julia K. MacCallum, Aleksandra E. Olszewski, Yu Zhang, Jack J. Jiang, Effects of Low-Pass Filtering on Acoustic Analysis of Voice, *Journal of Voice*, Volume 25, Issue 1, 2011, Pages 15-20.
+[^MacCallum]: Julia K. MacCallum, Aleksandra E. Olszewski, Yu Zhang, Jack J. Jiang,
+Effects of Low-Pass Filtering on Acoustic Analysis of Voice, *Journal of Voice*, Volume 25, Issue 1, 2011, Pages 15-20.
 
 The experimental results presented by Drullman, Festen and Plomp[^Drullman] took one step further in the discussion of the relationship between the sentence intelligibility number of bands and cutoff frequency chosen.
 
@@ -147,10 +148,10 @@ After loading the voice signal, we plot the original signal with time in the fir
 
 ```matlab
 function [sync] = vocoder(LPF, N, sig, fs)
-    %N:the number we divide the frequency
-    %LPF:cutoff frequency when extract envelope
-    %sig:the signal to be operated
-    %fs:the sampling rate
+    % N:the number we divide the frequency
+    % LPF:cutoff frequency when extract envelope
+    % sig:the signal to be operated
+    % fs:the sampling rate
     sync = [zeros(1, length(sig))]';
     [LPF_b, LPF_a] = butter(4, LPF / (fs / 2));
 
@@ -171,10 +172,10 @@ end
 ```
 
 Then we use circulation to generate the signal after different resynthesis and their power spectrum density.
-In task1, we set LPF to be 50 Hz and vary the number of divided bands.
-The figures below are the comparison of audio waves of synthesized sentence and their PSDs (unit: dB) with different numbers of bands N=1,2,4,6,8 and same cutting frequency F=50Hz.
+In task1, we set LPF to be 50Hz and vary the number of divided bands.
+The figures below are the comparison of audio waves of synthesized sentence and their PSDs (unit: dB) with different numbers of bands $N=1,2,4,6,8$ and same cutting frequency $F=\mathrm{50Hz}$.
 
-For different generated sentences, we forecasted the sentences to 5 volunteers to find the intelligibility of different numbers of bands. The result is they can not figure out what the sentences exactly were saying for all the signals. But they can figure out the similar voice’s characters at N=6 and N=8 such as numbers of words, the up-down tone of voices and so on.
+For different generated sentences, we forecasted the sentences to 5 volunteers to find the intelligibility of different numbers of bands. The result is they can not figure out what the sentences exactly were saying for all the signals. But they can figure out the similar voice’s characters at $N=6$ and $N=8$ such as numbers of words, the up-down tone of voices and so on.
 
 Comparing the plots of the original signal and the synthesis signal, we can see that when N is growing bigger, the details of signals are shown more. This is because the variety of frequency of the components(sine-waves) is richer when N is growing.  
 
@@ -214,7 +215,7 @@ From the plots, we can easily see that the power spectrum intensity of the speec
 
 After hearing the resulting signal, we can make a further conclusion that the higher the cutoff frequency, the easier for listener to understand the meaning of the speech signal.
 
-To test our result, we invited five volunteers to hear the four resulting signals,we find that only when N = 400 that the listeners can understand the meaning.
+To test our result, we invited five volunteers to hear the four resulting signals,we find that only when $N = 400$ that the listeners can understand the meaning.
 
 ---
 
@@ -223,30 +224,34 @@ To test our result, we invited five volunteers to hear the four resulting signal
 After loading the voice signal, we plot the original signal with time in the first figure. There are obviously 11 signal blocks on the plot which corresponds to the 11 words the woman said. First, we pack the whole resynthesis process into one method called vocoder:
 
 ```matlab
-function [sync] = vocoder(LPF,N,sig,fs)
-%N:the number we divide the frequency
-%LPF:cutoff frequency when extract envelope
-%sig:the signal to be operated
-%fs:the sampling rate
-sync=[zeros(1,length(sig))]';
-[LPF_b,LPF_a]=butter(4,LPF/(fs/2));
-for i=1:N
-    [l,h]=getFreq(N,i);
-    [BP_b,BP_a]=butter(4,[l,h]/(fs/2));
-    y=abs(filter(BP_b,BP_a,sig));
-    enve=filter(LPF_b,LPF_a,y);
-    n=1:length(y);dt=n/fs;f1=(l+h)/2;
-    sin1=sin(2*pi*f1*dt)';
-    %enve=enve/norm(enve)*norm(sig);
-    sync=sync+enve.*sin1;
-end
-sync=sync/norm(sync)*norm(sig);
+function [sync] = vocoder(LPF, N, sig, fs)
+    % N:the number we divide the frequency
+    % LPF:cutoff frequency when extract envelope
+    % sig:the signal to be operated
+    % fs:the sampling rate
+    sync = [zeros(1, length(sig))]';
+    [LPF_b, LPF_a] = butter(4, LPF / (fs / 2));
+
+    for i = 1:N
+        [l, h] = getFreq(N, i);
+        [BP_b, BP_a] = butter(4, [l, h] / (fs / 2));
+        y = abs(filter(BP_b, BP_a, sig));
+        enve = filter(LPF_b, LPF_a, y);
+        n = 1:length(y); 
+        dt = n / fs; 
+        f1 = (l + h) / 2;
+        sin1 = sin(2 * pi * f1 * dt)';
+        % enve  =enve / norm(enve) * norm(sig);
+        sync = sync + enve .* sin1;
+    end
+
+    sync = sync / norm(sync) * norm(sig);
 end
 ```
 
 Then we use circulation to generate the signal after different resynthesis and their power spectrum density.
 In task1, we set LPF to be 50 Hz and vary the number of divided bands.
-The figures below are the comparison of audio waves of synthesized sentence and their PSDs (unit: dB) with different numbers of bands N=1,2,4,6,8 and same cutting frequency F=50Hz.
+The figures below are the comparison of audio waves of synthesized sentence and their PSDs (unit: dB) with different numbers of bands $N\mathrm{=1,2,4,6,8}$ and same cutting frequency $F\mathrm{=50Hz}$.
 
 For different generated sentences, we forecasted the sentences to 5 volunteers to find the intelligibility of different numbers of bands. The result is they can not figure out what the sentences exactly were saying for all the signals. But they can figure out the similar voice’s characters at N=6 and N=8 such as numbers of words, the up-down tone of voices and so on.
 
@@ -286,7 +291,7 @@ The plots are shown below.
 
 However, after adding white noise, we can also find out that for the PSD plot, intensity in frequencies away from peaks get higher in general. We think it is because the white noise have an even energy in all frequencies, so the total energy in all frequencies will be higher after adding white noise.
 
-After hearing the signals, we find that for the first three results, which is when f_stop = 20Hz, 50Hz and 100Hz. The voice seems to be covered totally by white noise, the only result we enable to hear the content is the one that with cutoff frequency 400Hz.
+After hearing the signals, we find that for the first three results, which is when $\mathrm{COF = 20Hz, 50Hz , 100Hz}$. The voice seems to be covered totally by white noise, the only result we enable to hear the content is the one that with cutoff frequency 400Hz.
 
 ---
 
@@ -300,7 +305,7 @@ For signals with white noise, we assume that they have a similar phenomenon. Aft
 
 Base on this understanding, after testing we find that the lower bound for the signal with white noise is $C = 2800$.
 
-We also assume the connection between the two lower bounds. Since the signals with noise we use have a signal to noise ratio(SNR) of $-5dB$, we find that the ratio of two lower bounds are close to the ratio of energy for original signals in signals with noise.
+We also assume the connection between the two lower bounds. Since the signals with noise we use have a signal to noise ratio(SNR) of $\mathrm{-5dB}$, we find that the ratio of two lower bounds are close to the ratio of energy for original signals in signals with noise.
 
 ---
 
@@ -308,7 +313,7 @@ We also assume the connection between the two lower bounds. Since the signals wi
 
 ### Contribution
 
-Xue Feng: Task 1-4, code optimization(codes for function), project expansion.
+Xue Feng: Task 1-4, code optimization(codes for function), project expansion，presentation for discussion and investigation part.
 
 He Xinyi: Task1,3 and corresponding reports, presentation introduction part.
 
