@@ -178,6 +178,7 @@ end
 
 Then we use circulation to generate the signal after different resynthesis and their power spectrum density.
 In task1, we set LPF to be 50Hz and vary the number of divided bands.
+
 The figures below are the comparison of audio waves of synthesized sentence and their PSDs (unit: dB) with different numbers of bands $N=1,2,4,6,8$ and same cutting frequency $F=\mathrm{50Hz}$.
 
 For different generated sentences, we forecasted the sentences to 5 volunteers to find the intelligibility of different numbers of bands. The result is they can not figure out what the sentences exactly were saying for all the signals. But they can figure out the similar voice’s characters at $N=6$ and $N=8$ such as numbers of words, the up-down tone of voices and so on.
@@ -256,6 +257,7 @@ end
 
 Then we use circulation to generate the signal after different resynthesis and their power spectrum density.
 In task1, we set LPF to be 50 Hz and vary the number of divided bands.
+
 The figures below are the comparison of audio waves of synthesized sentence and their PSDs (unit: dB) with different numbers of bands $N\mathrm{=1,2,4,6,8}$ and same cutting frequency $F\mathrm{=50Hz}$.
 
 For different generated sentences, we forecasted the sentences to 5 volunteers to find the intelligibility of different numbers of bands. The result is they can not figure out what the sentences exactly were saying for all the signals. But they can figure out the similar voice’s characters at N=6 and N=8 such as numbers of words, the up-down tone of voices and so on.
