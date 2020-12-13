@@ -23,6 +23,16 @@ In a word, this is the first time for our students to process complex signals, w
 
 ## Background
 
+### Human Cochlear
+
+The frequency-to-place mapping for human cochlear is based
+
+$$
+f = 165.4\left(10^{0.06d - 1}\right).
+$$
+
+Where $f$ is $−3\mathrm{dB}$ cutoff frequency, and $d$($\mathrm{mm}$) is the distance along the cochlea.
+
 ### Feasibility
 
 By Fourier’s transformation, signals can be decomposed into a sum of sinusoids of different frequencies. This is especially relevant with human hearing, since the inner ear performs a form of mechanical Fourier transform by mapping frequencies along the length of the cochlear partition. Our work is based on the idea proposed by Hilbert[^Hilbert], a signal can be factored into the product of a slowly varying envelope and a rapidly varying fine time structure.
