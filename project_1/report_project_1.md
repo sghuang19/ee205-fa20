@@ -177,7 +177,7 @@ end
 ```
 
 Then we use circulation to generate the signal after different resynthesis and their power spectrum density.
-In task1, we set LPF to be 50Hz and vary the number of divided bands.
+In task 1, we set LPF to be 50Hz and vary the number of divided bands.
 
 The figures below are the comparison of audio waves of synthesized sentence and their PSDs (unit: dB) with different numbers of bands $N=1,2,4,6,8$ and same cutting frequency $F=\mathrm{50Hz}$.
 
@@ -256,7 +256,7 @@ end
 ```
 
 Then we use circulation to generate the signal after different resynthesis and their power spectrum density.
-In task1, we set LPF to be 50 Hz and vary the number of divided bands.
+In task 1, we set LPF to be 50 Hz and vary the number of divided bands.
 
 The figures below are the comparison of audio waves of synthesized sentence and their PSDs (unit: dB) with different numbers of bands $N\mathrm{=1,2,4,6,8}$ and same cutting frequency $F\mathrm{=50Hz}$.
 
