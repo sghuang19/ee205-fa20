@@ -7,7 +7,6 @@ The report for the first project of Signals and Systems lab session, written by 
 - XUE Feng, SID 11913020 from MEE
 - HE Xinyi, SID 11911234 from BME
 
-
 The complete resources, including report in `.pdf` and `.md` format, as well as all MATLAB scripts, can be retrieved at [our GitHub repo](https://github.com/SamuelHuang2019/ss-project).
 
 [toc]
@@ -25,6 +24,38 @@ In a word, this is the first time for our students to process complex signals, w
 ---
 
 ## Background
+
+### Premise
+
+To help the deaf regain the ability of hearing voice, scientists have figure out the mehcanism of deafness as is stated below.
+>"Research [^Hinojosa] has shown that the most common cause of deafness is the loss of hair cells, rather than the loss of auditory neurons. This was very encouraging for cochlear implants because the remaining neurons could be excited directly through electrical stimulation. A cochlear prosthesis is therefore based on the idea of bypassing the normal hearing mechanism (outer, middle, and part of the inner ear including the hair cells) and electrically stimulating the remaining auditory neurons directly. The challenge we face is finding how to stimulate (electrically) auditory neurons so that meaningful information about speech is conveyed to the brain. "
+>
+>![ear](figures/ear.png)
+>
+And they have figured out the mechanism for determing the frequency called place theory which wil be used in the designing strategy for audition stimulation.
+>"The corresponding hair cells bent by the displacement in the membrane stimulate adjacent nerve fibers, which are organized according to the frequency at which they are most sensitive. Each place or bcation in the cochlea is therefore responding “best” to a particular frequency. This mechanism for determining frequency is referred to as place theory. "
+>
+>![place_theory](figures/place_theory.png)
+>
+
+[^Hinojosa]:. Hinojosa R and Marion M: Histopathology of profound sensorineural deafness, Ann. New York Acad. ofSci., 405: 459-484, 1983.
+
+### Cochlear implant
+
+#### System
+
+With a Cochlear Implant, sound is picked up by the microphone worn on or near the ear on the external processor.
+
+The sounds are then processed, changed into electrical signals and passed to a transmitter coil worn on the head and kept in place via a magnet.
+
+The signals are sent by radio waves, through the skin to the implanted receiver and down the wire to the electrode in the cochlea. When the electrode receives the signal, it makes tiny currents that travel along the auditory nerve to provide a sensation of hearing.
+
+The cochlear system works as is shown in the picture below.
+>![Cochlear_implant](figures/cochlear_implant.png)
+
+#### Signal Processor
+
+The processor techniques were aimed at preserving waveform information, preserving envelope information, preserving spectral features (e.g., formants) and so on. In this project, we use the envelop information to systhesis the speech signal.
 
 ### Human Cochlear
 
