@@ -312,7 +312,7 @@ For signals with white noise, we assume that they have a similar phenomenon. Aft
 
 Base on this understanding, after testing we find that the lower bound for the signal with white noise is $C = 2800$.
 
-We also assume the connection between the two lower bounds. Since the signals with noise we use have a signal to noise ratio(SNR) of $\mathrm{-5dB}$, we find that the ratio of two lower bounds are close to the ratio of energy for original signals in signals with noise.
+We also assume the connection between the two lower bounds. Since the signals with noise we use have a signal to noise ratio(SNR) of $-5\mathrm{dB}$, we find that the ratio of two lower bounds are close to the ratio of energy for original signals in signals with noise.
 
 The PSD plots are shown below.
 
@@ -337,7 +337,7 @@ The PSD plots are shown below.
 ![investigation-10](figures/investigation_10.png)
 
 For the characteristic of spectrum, the synthesis signals which are more intelligibility‘s spectrum is more uniform, which is to say that the difference with original is close through the frequency domain. To be exact, the graph of difference should oscillate between local maximum and local minimum, and the rate should be high enough. Each local maximum should be close to each other, so as the local minimum.
- 
+
 ---
 
 ## Appendix
