@@ -320,8 +320,8 @@ We also assume the connection between the two lower bounds. Since the signals wi
 
 Xue Feng: Task 1-4, code optimization(codes for function), project expansion，presentation for discussion and investigation part.
 
-He Xinyi: Task1,3 and corresponding reports, reports for introduction part, presentation introduction part.
+He Xinyi: Task1-4, reports for task 1,3 and background part, presentation for introduction part.
 
-Gong Xinrui: Task 2,4 and corresponding reports, reports for discussion part, presentation for methodology part.
+Gong Xinrui: Task 2,4, reports for task 1,3 ,discussion and introduction part, presentation for methodology part.
 
 Huang Guanchao: Code optimization(codes for function)and corresponding reports,reports for feasibility and practice part, presentation for conclusion part.
