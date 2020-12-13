@@ -375,3 +375,5 @@ For the characteristic of spectrum, the synthesis signals which are more intelli
   - code implementation and optimization, corresponding report,
   - summary for project background
   - presentation for conclusion part.
+
+### Reference
