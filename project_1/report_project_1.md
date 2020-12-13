@@ -354,10 +354,24 @@ For the characteristic of spectrum, the synthesis signals which are more intelli
 
 ### Contribution
 
-Xue Feng: Task 1-4, code optimization(codes for function), project expansion，presentation for discussion and investigation part.
+- Xue Feng
+  - Experiment task 1-4
+  - project expansion
+  - presentation for discussion and investigation part
 
-He Xinyi: Task1-4, reports for task 1,3 and background part, presentation for introduction part.
+- He Xinyi
+  - experiment task 1-4
+  - report for task 1, 3
+  - report for background part
+  - presentation for introduction part
 
-Gong Xinrui: Task 2,4, reports for task 1,3 ,discussion and introduction part, presentation for methodology part.
+- Gong Xinrui
+  - experiment task 2, 4
+  - reports for task 1, 3
+  - report for discussion and introduction part
+  - presentation for methodology part
 
-Huang Guanchao: Code optimization(codes for function)and corresponding reports,reports for feasibility and practice part, presentation for conclusion part.
+- Huang Guanchao
+  - code implementation and optimization, corresponding report,
+  - summary for project background
+  - presentation for conclusion part.
