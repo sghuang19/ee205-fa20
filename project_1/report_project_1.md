@@ -301,7 +301,7 @@ After we finish the four basic tasks, we can get a semiquantitative result, that
 
 Then we use different values to verify our assumption. After our tests, we find the lower bound for $C$ is $C = 1200$.
 
-For signals with white noise, we assume that they have a similar phenomenon. After testing, we find that when COf get higher, the noise will also get larger. Therefore, for signals with white noise, there will also be a lower bound, however, we cannot set COF to be too high. According to our analysis, SSN, the noise we use, have a similar energy distribution for original signal. As a result, when COF increase, we can not only synthesize more details but also more noise signals.
+For signals with white noise, we assume that they have a similar phenomenon. After testing, we find that when COF get higher, the noise will also get larger. Therefore, for signals with white noise, there will also be a lower bound, however, we cannot set COF to be too high. According to our analysis, SSN, the noise we use, have a similar energy distribution for original signal. As a result, when COF increase, we can not only synthesize more details but also more noise signals.
 
 Base on this understanding, after testing we find that the lower bound for the signal with white noise is $C = 2800$.
 
@@ -319,5 +319,5 @@ He Xinyi: Task1,3 and corresponding reports, presentation introduction part.
 
 Gong Xinrui: Task 2,4 and corresponding reports, reports for discussion part, presentation for methodology part.
 
-Huang Guanchao: Code optimization(codes for function)and corresponding reports,reports for feasibility part, presentation for conclusion part.
+Huang Guanchao: Code optimization(codes for function)and corresponding reports,reports for feasibility and practice part, presentation for conclusion part.
 
