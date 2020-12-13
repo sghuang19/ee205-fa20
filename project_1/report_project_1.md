@@ -13,6 +13,12 @@ The complete resources, including report in `.pdf` and `.md` format, as well as 
 
 ## Introduction
 
+This project need us to synthesize some sample speech signals with the Hilbert`s theorem. What we need to do is to extract the envelope and use sine waves to modulate it. To get more information about our project, we read essays with different fields.
+
+Despite the theorem of the project, we also find research which has done similar work with us, and some applications and research on vocoders.
+
+In a word, this is the first time for our students to process complex signals, what we can learn is not limited to the project itself but understanding of relative fields. We also get a good chance for develop our self-learning skills.
+
 ---
 
 ## Background
