@@ -297,6 +297,34 @@ end
 
 ## Discussion
 
+关于语音合成的一些额外研究
+在四个task的研究之后，我们得到一个定性结果，即频谱分段N，包络截止频率COF越大，合成信号的识别度越高。在对无噪声信号的分析过程中，对PSD的分析发现，在N一定的情况下，COF增大到一定值之后，PSD几乎不会有太大的变化。由此我们猜想额外的COF对识别度没有重要的贡献。此外，我们也发现对于较小的N搭配较大的COF以及较大的N搭配较小的COF，虽然PSD有较大不同，但识别度几乎在同一等级，由此导出猜想，当N与COF的乘积大于某个定值的情况下，我们可以保证任意组合都能达到较高的辨识度。
+由此我们设置了不同的值进行测试，经过测试后，我们认为积为1200的情况下，可看作该信号的一个最低识别阈值。
+对于含噪声的信号，我们类比认为存在相应的性质。在测试之后发现，当COF增大后，噪音也会相应增大，故对于含噪声信号而言，最低阈值也存在，但是不能将COF设置过大。根据分析，噪音信号为SSN，其能量分布与原信号的频谱相似。故COF增大的同时，不仅能合成更多细节信息，也混杂入更多噪声信号。
+由此我们设置了不同的值进行测试，经过测试后，我们认为积为2800的情况下，可看作该信号的一个最低识别阈值。
+同时猜想两段信号最低阈值的联系，有信息可知信噪比为-5dB，我们发现两个阈值的比值接近于原信号能量在含噪声信号中能量的比值。
+
+After we finish the four basic tasks, we can get a semiquantitative result, that is: with N getting larger and COF getting higher, the easier the resulted signal can be recognized. In the analysis for speech signals without white noise, we focus on PSD and find that when N is certain and COF increases, the recognition for speech signals nearly doesn't change. Therefore, we assume that the contribution of COF is few. In addition, we find that comparing the result for N is relatively small and COF is relatively high, and N is relatively large and COF is relatively low, though the PSD is with a big difference, but the level of recognition for the two signals are similar. As a result, we assume that for $COF\times N = C$ where $C$ is a constant, we can ensure that the recognition will be in a high degree despite the specific value for the two parameters.
+
+Then we use different values to verify our assumption. After our tests, we find the lower bound for $C$ is $C = 1200$.
+
+For signals with white noise, we assume that they have a similar phenomenon. After testing, we find that when COf get higher, the noise will also get larger. Therefore, for signals with white noise, there will also be a lower bound, however, we cannot set COF to be too high. According to our analysis, SSN, the noise we use, have a similar energy distribution for original signal. As a result, when COF increase, we can not only synthesize more details but also more noise signals.
+
+Base on this understanding, after testing we find that the lower bound for the signal with white noise is $C = 2800$.
+
+We also assume the connection between the two lower bounds. Since the signals with noise we use have a signal to noise ratio(SNR) of $-5dB$, we find that the ratio of two lower bounds are close to the ratio of energy for original signals in signals with noise.
+
 ---
 
 ## Appendix
+
+### Contribution
+
+Xue Feng: Task 1-4, code optimization(codes for function), project expansion.
+
+He Xinyi: Task1,3 and corresponding reports, presentation introduction part.
+
+Gong Xinrui: Task 2,4 and corresponding reports, reports for discussion part, presentation for methodology part.
+
+Huang Guanchao: Code optimization(codes for function)and corresponding reports,reports for feasibility part, presentation for conclusion part.
+
