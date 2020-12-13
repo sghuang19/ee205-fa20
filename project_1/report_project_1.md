@@ -315,7 +315,7 @@ We also assume the connection between the two lower bounds. Since the signals wi
 
 Xue Feng: Task 1-4, code optimization(codes for function), project expansion，presentation for discussion and investigation part.
 
-He Xinyi: Task1,3 and corresponding reports, presentation introduction part.
+He Xinyi: Task1,3 and corresponding reports, reports for introduction part, presentation introduction part.
 
 Gong Xinrui: Task 2,4 and corresponding reports, reports for discussion part, presentation for methodology part.
 
