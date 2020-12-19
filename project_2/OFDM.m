@@ -14,11 +14,11 @@ xi=sqrt(2)*round(rand(1,N))-sqrt(2)/2;
 figure(1);
 subplot(211);
 stem(0:N-1,xr);
-xlabel('n');ylabel('real[n]');
+xlabel('n');ylabel('real[x]');
 title('real part of input signal');
 subplot(212);
 stem(0:N-1,xi);
-xlabel('n');ylabel('imag[n]');
+xlabel('n');ylabel('imag[x]');
 title('imaginary part of input signal');
 % take X as spectral data and construct time domain signal x by X;
 X=xr+1i*xi;
@@ -48,8 +48,8 @@ xlabel('n');ylabel('imag OFDM with CP');
 title('imaginary part of OFDM signal with CP');
 
 % Now we do DAC, create impulse and square
-x_cp_ct=kron(x_cp,delta);
-x_sq=kron(x_cp,c);
+x_cp_ct=upsample(x_cp,1000);
+x_sq=reshape(repmat(x_cp,1000,1),1,[]);
 
 figure(4);
 subplot(211);
@@ -72,8 +72,9 @@ xlabel('t');ylabel('intensity');
 title('CT AM signal');
 
 % Transmit Part
+A=1;B=[0.5 zeros(1,1.5*1000-1) 0.4 zeros(1,1000-1) 0.35 zeros(1,0.5*1000-1) 0.3 ];
 h=[0.5,zeros(1,1499),0.4,zeros(1,999),0.35,zeros(1,499),0.3,zeros(1,1000)];
-yh=conv(x_am,h);
+yh=filter(B,A,x_am);
 
 figure(6);
 subplot(211);
@@ -94,24 +95,14 @@ yti=2*sin(2*pi*wc*t2).*yh;
 %set ideal LPF and pass signal through it
 fft1=fft(ytr);
 fft2=fft(yti);
-fft1=[fft1(1:2000),zeros(1,length(fft1)-4000),fft1(length(fft1)-2000:length(fft1))];
-fft2=[fft2(1:2000),zeros(1,length(fft2)-4000),fft2(length(fft2)-2000:length(fft2))];
+fft1=[fft1(1:2000),zeros(1,length(fft1)-4000),fft1(length(fft1)-2000+1:length(fft1))];
+fft2=[fft2(1:2000),zeros(1,length(fft2)-4000),fft2(length(fft2)-2000+1:length(fft2))];
 
-% [b,a]=butter(4,wc*dt*2);
-% ytrc=filter(b,a,ytr);
-% ytic=filter(b,a,yti);
+
 ytrc=ifft(fft1);
 ytic=ifft(fft2);
 
-% figure(7);
-% subplot(211);
-% plot((1:length(fft11))*dt,real(fft11));
-% xlabel('n');ylabel('y(t)');
-% title('real part of Transmition');
-% subplot(212);
-% plot((1:length(fft22))*dt,fft22);
-% xlabel('n');ylabel('y(t)');
-% title('imaginary part of Transmition');
+
 figure(7);
 subplot(211);
 plot((1:length(ytrc))*dt,ytrc);
@@ -128,9 +119,9 @@ Yr=zeros(1,Nx);
 Yi=zeros(1,Nx);
 for i=1:Nx
     re=0;im=0;
-    for j=(i-1)*1000:i*1000
-        re=re+ytrc(j+1);
-        im=im+ytic(j+1);
+    for j=(i-1)*1000+1:i*1000
+        re=re+ytrc(j);
+        im=im+ytic(j);
     end
     Yr(i)=re/1000;
     Yi(i)=im/1000;
@@ -146,15 +137,32 @@ stem(1:Nx,Yi);
 xlabel('n');ylabel('Y[n]');
 title('imaginary part of Y');
 
+%求得去cp后y的fft
 Y_rc=Y(lcp+1:Nx);
+Y_recover_N=fft(Y_rc);
 
-h_dt=zeros(1,4);
-for i=1:4
-    tmp=0;
-    for j=(i-1)*1000:i*1000
-       tmp=tmp+h(j+1);
-    end
-    h_dt(i)=tmp;
-end
+figure(9);
+subplot(211);stem(real(Y_recover_N));xlabel('n');legend('Y recover real');
+subplot(212);stem(imag(Y_recover_N));xlabel('n');legend('Y recover imag');
+
+%Y/H=X
+X_recover_N=Y_recover_N./H;
+
+figure(10);
+subplot(211);
+stem(real(X_recover_N));
+hold on;
+stem(xr);
+xlabel('n');legend('x_r_c_o_v_e_r[n] Real','x[n] Real');
+hold off;
+subplot(212);
+stem(imag(X_recover_N));
+hold on;
+stem(xi);
+xlabel('n');
+hold off;
+legend('x_r_c_o_v_e_r[n] Imag','x[n] Imag');
+
+
 
 
