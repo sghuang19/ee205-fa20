@@ -80,12 +80,68 @@ Then we can recover X since `X_recover_N=Y_recover_N./H;`
 
 ## Discussions
 
+---
 
+### Applications
 
+OFDM is now used in most new and emerging broadband wired and wireless communication systems because it is an effective solution to intersymbol interference caused by a dispersive channel. And now it will approximately be used in some other fields.
+
+In spite of the widespread use of OFDM in wireless communication, recently OFDM has also applied in optical communication[^Armstrong]. OFDM used in optical communication has some difference with the traditional one, and the following table can clearly show the distinctions.
+
+[^Armstrong]:J. Armstrong, "OFDM for Optical Communications," in Journal of Lightwave Technology, vol. 27, no. 3, pp. 189-204, Feb.1, 2009, doi: 10.1109/JLT.2008.2010061.
+
+![OP-OFDM](figures/OP_OFDM.png)
+
+To let OFDM useful in optical communication systems, in the optical domain, optical receivers use square-law detectors for producing a $H_k$ close to be a constant or slowly varying. Other improvement like using Intensity Modulation, MIMO-OFDM are also widely use in optical communication systems.
+
+In addition, based on OFDM, some waveforms having the same principles are created for 5G development[^Moradi]. WAveforms like Generalized frequency division multiplexing (GFDM) is introduced in 2009 by Fettweis et al. is an "improvement to OFDM in which filtering is imposed on each subcarrier band to minimize the overlapping among subcarriers, thus facilitate multiuser application without worrying about accurate synchronization of the users.",it also solves the downside of adjacent subcarriers suffer from some level of interference from adding cp to the signals.
+
+[^Moradi]:B. Farhang-Boroujeny and H. Moradi, "OFDM Inspired Waveforms for 5G," in IEEE Communications Surveys & Tutorials, vol. 18, no. 4, pp. 2474-2492, Fourthquarter 2016, doi: 10.1109/COMST.2016.2565566.
+
+![GFDM](figures/GFDM.png)
+
+Moreover, O-OFDM, a kind of improvement OFDM waveforms are a promising modulation[^Elgala] for Visible light communications (VLC) technology, which permits the exploitation of light-emitting diode (LED) luminaries for simultaneous illumination and broadband wireless communication.
+
+[^Elgala]:. Hany Elgala and Thomas D. C. Little, "Reverse polarity optical-OFDM (RPO-OFDM): dimming compatible OFDM for gigabit VLC links," Opt. Express 21, 24288-24299 (2013)
+
+---
+
+### Advantages
+
+1. Its ability to precisely tailor the transmitted signal to the frequency characteristics of the channel.[^Ballal]
+
+[^Ballal]:
+
+2. It reduces ISI and IFI through use of a cyclic prefix and fading caused by multipath propagation.
+
+3. Channel equalization becomes simpler than by using
+adaptive equalization techniques with single carrier
+systems. 
+
+4. It is less sensitive to sample timing offsets than single carrier systems are. 
+
+5. It is robust against narrow-band co-channel interference. 
+
+6. It is more sensitive to carrier frequency offset and drift than single carrier systems are due to leakage of the DFT.
+
+7. OFDM is computationally capable by using FFT
+techniques to implement the modulation and demodulation functions. 
+
+---
+
+### Disadvantages
+
+1. The OFDM signal has a noise like amplitude with a very large dynamic range; hence it requires RF power
+amplifiers with a high peak to average power ratio.
+
+2. It is more sensitive to carrier frequency offset and drift than single carrier systems are due to leakage of the DFT.
+
+3. It is sensitive to Doppler shift.
+
+4. It requires linear transmitter circuitry, which suffers from poor power efficiency.
+
+5. It suffers loss of efficiency caused by cyclic prefix. 
 
 ---
 
 ## Appendix
-
-
-
