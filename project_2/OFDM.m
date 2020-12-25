@@ -27,11 +27,13 @@ x=ifft(X);
 figure(2);
 subplot(211);
 stem(0:N-1,real(x));
-xlabel('n');ylabel('real OFDM');
+xlabel('n');
+ylabel('real OFDM');
 title('real part of OFDM signal');
 subplot(212);
 stem(0:N-1,imag(x));
-xlabel('n');ylabel('imag OFDM');
+xlabel('n');
+ylabel('imag OFDM');
 title('imaginary part of OFDM signal');
 
 % add CP
@@ -54,25 +56,40 @@ x_sq=reshape(repmat(x_cp,1000,1),1,[]);
 figure(4);
 subplot(211);
 plot((1:length(x_cp_ct))*dt,real(x_cp_ct));
-xlabel('t');ylabel('Pulse');
+xlabel('t');
+ylabel('Pulse');
 title('CT signal pulse');
 subplot(212);
 plot((1:length(x_sq))*dt,real(x_sq));
-xlabel('n');ylabel('intensity');
+xlabel('n');
+ylabel('intensity');
 title('CT signal square');
 
 % AM process
 t=(1:length(x_sq))*dt;
 sin1=sin(2*pi*wc*t);cos1=cos(2*pi*wc*t);
 x_am=cos1.*real(x_sq)+sin1.*imag(x_sq);
+%Freq
+xtw = fft(x_am)/length(x_am);
+X_am=abs(fftshift(xtw));
+n=wc*(0:2:length(X_am)/2)/(length(X_am)/2.5);
 
 figure(5);
+subplot(211);
 plot((1:length(x_am))*dt,x_am);
-xlabel('t');ylabel('intensity');
+xlabel('t');
+ylabel('intensity');
 title('CT AM signal');
+subplot(212)
+stem(n,X_am(1:2:length(X_am)/2+1));
+axis([0.97*10^8 1.03*10^8 0 0.025]);
+xlabel('f')
+ylabel('Freq.')
+title('Frequency of CT AM signal')
 
 % Transmit Part
-A=1;B=[0.5 zeros(1,1.5*1000-1) 0.4 zeros(1,1000-1) 0.35 zeros(1,0.5*1000-1) 0.3 ];
+A=1;
+B=[0.5 zeros(1,1.5*1000-1) 0.4 zeros(1,1000-1) 0.35 zeros(1,0.5*1000-1) 0.3 ];
 h=[0.5,zeros(1,1499),0.4,zeros(1,999),0.35,zeros(1,499),0.3,zeros(1,1000)];
 yh=filter(B,A,x_am);
 
@@ -127,6 +144,7 @@ for i=1:Nx
     Yi(i)=im/1000;
 end
 Y=Yr+1i*Yi;
+
 figure(8);
 subplot(211);
 stem(1:Nx,Yr);
@@ -142,8 +160,14 @@ Y_rc=Y(lcp+1:Nx);
 Y_recover_N=fft(Y_rc);
 
 figure(9);
-subplot(211);stem(real(Y_recover_N));xlabel('n');legend('Y recover real');
-subplot(212);stem(imag(Y_recover_N));xlabel('n');legend('Y recover imag');
+subplot(211);
+stem(real(Y_recover_N));
+xlabel('n');
+legend('Y recover real');
+subplot(212);
+stem(imag(Y_recover_N));
+xlabel('n');
+legend('Y recover imag');
 
 %Y/H=X
 X_recover_N=Y_recover_N./H;
