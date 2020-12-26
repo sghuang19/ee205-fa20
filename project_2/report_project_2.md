@@ -110,22 +110,22 @@ Moreover, O-OFDM, a kind of improvement OFDM waveforms are a promising modulatio
 
 1. Its ability to precisely tailor the transmitted signal to the frequency characteristics of the channel.[^Ballal]
 
-[^Ballal]:
-
 2. It reduces ISI and IFI through use of a cyclic prefix and fading caused by multipath propagation.
 
 3. Channel equalization becomes simpler than by using
 adaptive equalization techniques with single carrier
-systems. 
+systems.
 
-4. It is less sensitive to sample timing offsets than single carrier systems are. 
+4. It is less sensitive to sample timing offsets than single carrier systems are.
 
-5. It is robust against narrow-band co-channel interference. 
+5. It is robust against narrow-band co-channel interference.
 
 6. It is more sensitive to carrier frequency offset and drift than single carrier systems are due to leakage of the DFT.
 
 7. OFDM is computationally capable by using FFT
-techniques to implement the modulation and demodulation functions. 
+techniques to implement the modulation and demodulation functions.
+
+[^Ballal]:Beena R. Ballal, Ankit Chadha, Neha Satam, "Orthogonal Frequency Division Multiplexing and its Applications", International Journal of Science and Research (IJSR),  Volume 2 Issue 1, January 2013, 325 - 328
 
 ---
 
@@ -140,7 +140,7 @@ amplifiers with a high peak to average power ratio.
 
 4. It requires linear transmitter circuitry, which suffers from poor power efficiency.
 
-5. It suffers loss of efficiency caused by cyclic prefix. 
+5. It suffers loss of efficiency caused by cyclic prefix.
 
 ---
 
