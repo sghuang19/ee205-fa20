@@ -21,7 +21,6 @@ In this project, we implemented the whole process of OFDM in signal transmission
 
 ---
 
-
 ## Receiver Design and Analysis
 
 ---
@@ -80,12 +79,6 @@ Then we can recover X since `X_recover_N=Y_recover_N./H;`
 
 ## Discussions
 
-
-
-
 ---
 
 ## Appendix
-
-
-
