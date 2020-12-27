@@ -87,6 +87,22 @@ yh = filter(B, A, x_am);
 
 ## Receiver Design and Analysis
 
+
+### Elaborate on the relation between h(t) and h[n]
+
+Firstly, we will discuss the relation between h(t) and h[n], which can be inferred from Block3 and integral sampling. According to integral sampling:
+
+$y_{int}\ (t)=\frac{1}{T}\int(t-T)^t y_{dem}(\tau) d\tau$
+
+Then signal passed the wireless channel after demodulation:
+
+
+If the modulation process is ignored, the process of the convolution gate function can be written as:
+
+$x_c\left(t\right)\ast\ h(t)$
+$=\ x_p\left(t\right)\ast\ c\left(t\right)\ast h\left(t\right)$
+$=\left[\sum\ x\left[n\right]\delta\left(t-nT\right)\right]\ast c\left(t\right)\ast h(t)
+$
 ### Receiver RF Front-End & ADC (Block 4)
 
 The process diagram of the design of receiver RF front-end with ADC(Block 4) is shown below.
