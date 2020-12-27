@@ -182,6 +182,12 @@ h[n] =
 \frac{1}{T} \int_{(n - 1)T}^{nT} c(\tau - nT) * h(\tau)\mathop{d\tau}
 $$
 
+The plot is shown below.
+
+![h(t)](figures/ht.png)
+
+![h[n]](figures/hn.png)
+
 ### Determining the Length of CP  
 
 According to our research, the length of cp needs to be bigger than the maximum delay expansion of the channel which should be able to cancel Inter-Symbol Interference (ISI) and ICI. Since
