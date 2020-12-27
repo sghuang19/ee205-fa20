@@ -103,6 +103,70 @@ $x_c\left(t\right)\ast\ h(t)$
 $=\ x_p\left(t\right)\ast\ c\left(t\right)\ast h\left(t\right)$
 $=\left[\sum\ x\left[n\right]\delta\left(t-nT\right)\right]\ast c\left(t\right)\ast h(t)
 $
+### Receiver RF Front-End & ADC (Block 4)
+
+The process diagram of the design of receiver RF front-end with ADC(Block 4) is shown below.
+
+```mermaid
+graph LR
+    1["CT signal<br/>after actual<br/>wireless<br/>channel h(t)"]
+    cos[Multiply with<br/>2cosωt]
+    sin[Multiply with<br/>2sinωt]
+
+    1 ==> cos
+    1 ==> sin
+    cos ==> LPFup((LPF))
+    sin ==> LPFlow((LPF))
+
+    xr{{"[xr(t) * h(t)]"}}
+    xi{{"[xi(t) * h(t)]"}}
+
+    LPFup ==> xr ==> ADC
+    LPFlow ==> xi ==> ADC
+
+    ADC["Integrator<br/>(ADC)"] ==> y{{"ycp[n]"}}
+```
+
+Firstly, we use coherent demodulation, to divide the real part and image part of the signal. Because we modulate the signal in block 3 by multiplying sine and cosine wave, we can demodulate it by doing this inversely. After multiplying with $2\sin\omega_ct$ and $2\cos\omega_ct$ separately, the analytical result is shown as below.
+
+$$
+\begin{cases}
+2\cos\omega_ct[x_r(t)\cos\omega_ct + x_i(t)\sin\omega_ct]=
+x_r(t) + x_r(t)\cos{2\omega}_ct + x_i(t)\sin{2\omega}_ct \\
+2\sin\omega_ct[x_r(t)cos\omega_ct + x_i(t)\sin\omega_ct] =
+x_i(t) - x_i(t)\cos{2\omega}_ct + x_r(t)\sin{2\omega}_ct
+\end{cases}
+$$
+
+We use LPF to get the real and imaginary part of $x(t)$ and add them together as $x_r(t) + x_i(t)i$ to get $y(t)$, which still contains the CP. Then we use integrator as ADC part to accumulate the received power and generate DT signal $y_\text{CP}[n]$.
+
+$$
+\begin{aligned}
+y_\text{int}(t) & =
+\frac{1}{T} \int_{t - T}^{t} y_{\text{dem}(\tau)}\mathop{d\tau} \\
+y[n] & =
+y_\text{int}(nT) =
+\frac{1}{T} \int_{(n-1)T}^{nT} y_{\text{dem}(\tau)}\mathop{d\tau} =
+\frac{1}{T} \int_{(n-1)T}^{nT}{x_c(\tau) h(\tau)}\mathop{d\tau}
+\end{aligned}
+$$
+
+Finally, we need to remove the CP and get the result $y[n]$, which corresponds to the convolution of $x[n]$ and $h[n]$.
+
+### Determining the Length of CP  
+
+According to our research, the length of cp needs to be bigger than the maximum delay expansion of the channel which should be able to cancel Inter-Symbol Interference (ISI) and ICI. Since
+
+$$
+h(t) =
+0.5\delta(t) +
+0.4\delta(t - 1.5T) +
+0.35\delta(t - 2.5T) +
+0.3\delta(t - 3T),
+$$
+
+the maximum delay is $3T = 3\mu\mathrm{s}$, we take CP equals $4\mu\mathrm{s}$. Besides, the length of CP should guarantee that the result of cyclic convolution is concluded in linear convolution, which is verified in the simulation taking length of CP equals $4$.
+
 ---
 
 ## Simulations
@@ -187,13 +251,13 @@ Moreover, O-OFDM, a kind of improvement OFDM waveforms are a promising modulatio
 
 ### Advantages
 
-First of all, the biggest advantages of OFDM is to resist frequency selective fading or narrowband interference. Since OFDM is a multi-carrier system, only a small part of subcarrier and the relating information will have the problems of being affected when the frequency selective fading occurs. However, if we use traditional single carrier system, the effects will be "amplified" and cause the whole system to be influence and a large amount of of information will be lost or disturbed. Therefore, on a whole, using OFDM is much better for protecting the information and signals transmitting in these waveforms. 
+First of all, the biggest advantages of OFDM is to resist frequency selective fading or narrowband interference. Since OFDM is a multi-carrier system, only a small part of subcarrier and the relating information will have the problems of being affected when the frequency selective fading occurs. However, if we use traditional single carrier system, the effects will be "amplified" and cause the whole system to be influence and a large amount of of information will be lost or disturbed. Therefore, on a whole, using OFDM is much better for protecting the information and signals transmitting in these waveforms.
 
 Secondly, being a multi-carrier, OFDM can carrying much information and these satisfy the contemporary society needs for faster and more efficient information transmission.
 
-Thirdly, OFDM can robust against intersymbol interference(ISI). ISI is a form of distortion of a signal in which one symbol interferes with subsequent symbols. This is an unwanted phenomenon as the previous symbols have similar effect as noise, thus making the communication less reliable. The spreading of the pulse beyond its allotted time interval causes it to interfere with neighboring pulses. 
+Thirdly, OFDM can robust against intersymbol interference(ISI). ISI is a form of distortion of a signal in which one symbol interferes with subsequent symbols. This is an unwanted phenomenon as the previous symbols have similar effect as noise, thus making the communication less reliable. The spreading of the pulse beyond its allotted time interval causes it to interfere with neighboring pulses.
 
-In an OFDM system, the entire channel is divided into many narrow subchannels, which are utilized in parallel transmission, thereby increasing the symbol duration and reducing the ISI. Therefore, OFDM is an effective technique for combating multipath fading and for high-bit-rate transmission over mobile wireless channels. 
+In an OFDM system, the entire channel is divided into many narrow subchannels, which are utilized in parallel transmission, thereby increasing the symbol duration and reducing the ISI. Therefore, OFDM is an effective technique for combating multipath fading and for high-bit-rate transmission over mobile wireless channels.
 
 Besides, because of the longer duration of symbols, the OFDM system can alleviate the effect of impulse noise.
   >When an OFDM system is designed so that there is neither interchannel interference (ICI) nor ISI, the computationally efficient fast Fourier transform (FFT) can be applied to decouple subchannels and the channel equalization is achieved simply by a complex scalar for each independent subchannel.[^Sun]
