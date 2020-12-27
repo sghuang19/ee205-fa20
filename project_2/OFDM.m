@@ -79,7 +79,8 @@ title('Zero-order-held CT signal')
 
 % amplitude modulation
 t = (1:length(x_sq)) * dt;
-sin1 = sin(2 * pi * wc * t); cos1 = cos(2 * pi * wc * t);
+sin1 = sin(2 * pi * wc * t);
+cos1 = cos(2 * pi * wc * t);
 x_am = cos1 .* real(x_sq) + sin1 .* imag(x_sq);
 % spectrum
 xtw = fft(x_am) / length(x_am);
@@ -94,7 +95,7 @@ title('CT AM signal')
 
 subplot(212)
 stem(n, X_am(1:2:length(X_am) / 2 + 1))
-axis([0.97 * 10^8 1.03 * 10^8 0 0.025])
+axis([0.97e8 1.03e8 0 0.025])
 xlabel('f')
 title('Frequency spectrum of CT AM signal')
 
