@@ -101,43 +101,43 @@ xi = sqrt(2) * round(rand(1, N)) - sqrt(2) / 2;
 
 The plot for our signal is as below.
 
-![InputSignal](figures/OriginalSignal.png)
+![InputSignal](figures/figure1.png)
 
 Then we use `ifft()` to produce the signal in time domain.  
 
-![OFDM-Signal](figures/OFDM_Signal.png)
+![OFDM-Signal](figures/figure2.png)
 
 After that we add `cp` with length of 4 to this signal.
 
-![OFDM-Signal+cp](figures/OFDM_Signal+cp.png)
+![OFDM-Signal+cp](figures/figure3.png)
 
-To make our signal discrete, we first produce the impulse result of OFDM signal and then use square signal to simulate it.
+We then produce the impulse result of OFDM signal and then use square signal to shape it.
 
-![OFDM-Signal+cp](figures/CT_impulse_square.png)
+![OFDM-Signal+cp](figures/figure4.png)
 
 Then we add carrier signal to the OFDM signal.
 
-![OFDM-Signal+cp](figures/CT_AM_Signal.png)
+![OFDM-Signal+cp](figures/figure5.png)
 
 After that, we simulate the process of real wireless channel.
 
-![OFDM-Signal+cp](figures/CT_transmit.png)
+![OFDM-Signal+cp](figures/figure6.png)
 
 Then the signal experience a process of demodulation and pass through a LPF.
 
-![OFDM-Signal+cp](figures/Demodulation.png)
+![OFDM-Signal+cp](figures/figure7.png)
 
 Sampling:
 
-![OFDM-Signal+cp](figures/sampling.png)
+![OFDM-Signal+cp](figures/figure8.png)
 
 Then we remove cp.
 
-![OFDM-Signal+cp](figures/remove_cp.png)
+![OFDM-Signal+cp](figures/figure9.png)
 
 Then we can recover X since `X_recover_N=Y_recover_N./H;`
 
-![OFDM-Signal+cp](figures/recover.png)
+![OFDM-Signal+cp](figures/figure10.png)
 
 ---
 
@@ -171,24 +171,22 @@ Moreover, O-OFDM, a kind of improvement OFDM waveforms are a promising modulatio
 
 ### Advantages
 
-1. Its ability to precisely tailor the transmitted signal to the frequency characteristics of the channel.[^Ballal]
+First of all, the biggest advantages of OFDM is to resist frequency selective fading or narrowband interference. Since OFDM is a multi-carrier system, only a small part of subcarrier and the relating information will have the problems of being affected when the frequency selective fading occurs. However, if we use traditional single carrier system, the effects will be "amplified" and cause the whole system to be influence and a large amount of of information will be lost or disturbed. Therefore, on a whole, using OFDM is much better for protecting the information and signals transmitting in these waveforms. 
 
-2. It reduces ISI and IFI through use of a cyclic prefix and fading caused by multipath propagation.
+Secondly, being a multi-carrier, OFDM can carrying much information and these satisfy the contemporary society needs for faster and more efficient information transmission.
 
-3. Channel equalization becomes simpler than by using
-adaptive equalization techniques with single carrier
-systems.
+Thirdly, OFDM can robust against intersymbol interference(ISI). ISI is a form of distortion of a signal in which one symbol interferes with subsequent symbols. This is an unwanted phenomenon as the previous symbols have similar effect as noise, thus making the communication less reliable. The spreading of the pulse beyond its allotted time interval causes it to interfere with neighboring pulses. 
 
-4. It is less sensitive to sample timing offsets than single carrier systems are.
+In an OFDM system, the entire channel is divided into many narrow subchannels, which are utilized in parallel transmission, thereby increasing the symbol duration and reducing the ISI. Therefore, OFDM is an effective technique for combating multipath fading and for high-bit-rate transmission over mobile wireless channels. 
 
-5. It is robust against narrow-band co-channel interference.
+Besides, because of the longer duration of symbols, the OFDM system can alleviate the effect of impulse noise.
+  >When an OFDM system is designed so that there is neither interchannel interference (ICI) nor ISI, the computationally efficient fast Fourier transform (FFT) can be applied to decouple subchannels and the channel equalization is achieved simply by a complex scalar for each independent subchannel.[^Sun]
+  >
+  [^Sun]:Yi Sun and Lang Tong, "Bandwidth efficient wireless OFDM," Conference Record of Thirty-Second Asilomar Conference on Signals, Systems and Computers (Cat. No.98CH36284), Pacific Grove, CA, 1998, pp. 78-82 vol.1, doi: 10.1109/ACSSC.1998.750831.
 
-6. It is more sensitive to carrier frequency offset and drift than single carrier systems are due to leakage of the DFT.
+In addition, OFDM technology can easily adapt to severe channel conditions without complex time-domain equalization. This is because OFDM can dynamically adapt to it and ensure continuous and successful communication, no matter the changes in the ability of data transmission.
 
-7. OFDM is computationally capable by using FFT
-techniques to implement the modulation and demodulation functions.
-
-[^Ballal]:Beena R. Ballal, Ankit Chadha, Neha Satam, "Orthogonal Frequency Division Multiplexing and its Applications", International Journal of Science and Research (IJSR),  Volume 2 Issue 1, January 2013, 325 - 328
+And comparing to traditional FDM, OFDM doesn't  required tuned sub-channel receiver filters.
 
 ---
 
