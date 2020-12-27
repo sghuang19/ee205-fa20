@@ -137,6 +137,20 @@ $$
 
 Finally, we need to remove the CP and get the result $y[n]$, which corresponds to the convolution of $x[n]$ and $h[n]$.
 
+### Determining the Length of CP  
+
+According to our research, the length of cp needs to be bigger than the maximum delay expansion of the channel which should be able to cancel Inter-Symbol Interference (ISI) and ICI. Since
+
+$$
+h(t) =
+0.5\delta(t) +
+0.4\delta(t - 1.5T) +
+0.35\delta(t - 2.5T) +
+0.3\delta(t - 3T),
+$$
+
+the maximum delay is $3T = 3\mu\mathrm{s}$, we take CP equals $4\mu\mathrm{s}$. Besides, the length of CP should guarantee that the result of cyclic convolution is concluded in linear convolution, which is verified in the simulation taking length of CP equals $4$.
+
 ---
 
 ## Simulations
@@ -221,13 +235,13 @@ Moreover, O-OFDM, a kind of improvement OFDM waveforms are a promising modulatio
 
 ### Advantages
 
-First of all, the biggest advantages of OFDM is to resist frequency selective fading or narrowband interference. Since OFDM is a multi-carrier system, only a small part of subcarrier and the relating information will have the problems of being affected when the frequency selective fading occurs. However, if we use traditional single carrier system, the effects will be "amplified" and cause the whole system to be influence and a large amount of of information will be lost or disturbed. Therefore, on a whole, using OFDM is much better for protecting the information and signals transmitting in these waveforms. 
+First of all, the biggest advantages of OFDM is to resist frequency selective fading or narrowband interference. Since OFDM is a multi-carrier system, only a small part of subcarrier and the relating information will have the problems of being affected when the frequency selective fading occurs. However, if we use traditional single carrier system, the effects will be "amplified" and cause the whole system to be influence and a large amount of of information will be lost or disturbed. Therefore, on a whole, using OFDM is much better for protecting the information and signals transmitting in these waveforms.
 
 Secondly, being a multi-carrier, OFDM can carrying much information and these satisfy the contemporary society needs for faster and more efficient information transmission.
 
-Thirdly, OFDM can robust against intersymbol interference(ISI). ISI is a form of distortion of a signal in which one symbol interferes with subsequent symbols. This is an unwanted phenomenon as the previous symbols have similar effect as noise, thus making the communication less reliable. The spreading of the pulse beyond its allotted time interval causes it to interfere with neighboring pulses. 
+Thirdly, OFDM can robust against intersymbol interference(ISI). ISI is a form of distortion of a signal in which one symbol interferes with subsequent symbols. This is an unwanted phenomenon as the previous symbols have similar effect as noise, thus making the communication less reliable. The spreading of the pulse beyond its allotted time interval causes it to interfere with neighboring pulses.
 
-In an OFDM system, the entire channel is divided into many narrow subchannels, which are utilized in parallel transmission, thereby increasing the symbol duration and reducing the ISI. Therefore, OFDM is an effective technique for combating multipath fading and for high-bit-rate transmission over mobile wireless channels. 
+In an OFDM system, the entire channel is divided into many narrow subchannels, which are utilized in parallel transmission, thereby increasing the symbol duration and reducing the ISI. Therefore, OFDM is an effective technique for combating multipath fading and for high-bit-rate transmission over mobile wireless channels.
 
 Besides, because of the longer duration of symbols, the OFDM system can alleviate the effect of impulse noise.
   >When an OFDM system is designed so that there is neither interchannel interference (ICI) nor ISI, the computationally efficient fast Fourier transform (FFT) can be applied to decouple subchannels and the channel equalization is achieved simply by a complex scalar for each independent subchannel.[^Sun]
