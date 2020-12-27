@@ -217,19 +217,34 @@ In spite of the widespread use of OFDM in wireless communication, recently OFDM 
 
 [^Armstrong]:J. Armstrong, "OFDM for Optical Communications," in Journal of Lightwave Technology, vol. 27, no. 3, pp. 189-204, Feb.1, 2009, doi: 10.1109/JLT.2008.2010061.
 
-![OP-OFDM](figures/OP_OFDM.png)
+| Typical OFDM System                     | Typical Optical System                  |
+| --------------------------------------- | --------------------------------------- |
+| Bipolar                                 | Unipolar                                |
+| Information carried on electrical field | Information carried on optical system   |
+| Local Oscillator at receiver            | No Local Oscillator (laser) at receiver |
+| Coherent Reception                      | Direct Detection                        |
 
 To let OFDM useful in optical communication systems, in the optical domain, optical receivers use square-law detectors for producing a $H_k$ close to be a constant or slowly varying. Other improvement like using Intensity Modulation, MIMO-OFDM are also widely use in optical communication systems.
 
 In addition, based on OFDM, some waveforms having the same principles are created for 5G development[^Moradi]. WAveforms like Generalized frequency division multiplexing (GFDM) is introduced in 2009 by Fettweis et al. is an "improvement to OFDM in which filtering is imposed on each subcarrier band to minimize the overlapping among subcarriers, thus facilitate multiuser application without worrying about accurate synchronization of the users.",it also solves the downside of adjacent subcarriers suffer from some level of interference from adding cp to the signals.
 
-[^Moradi]:B. Farhang-Boroujeny and H. Moradi, "OFDM Inspired Waveforms for 5G," in IEEE Communications Surveys & Tutorials, vol. 18, no. 4, pp. 2474-2492, Fourthquarter 2016, doi: 10.1109/COMST.2016.2565566.
+[^Moradi]: B. Farhang-Boroujeny and H. Moradi, "OFDM Inspired Waveforms for 5G," in IEEE Communications Surveys & Tutorials, vol. 18, no. 4, pp. 2474-2492, Fourthquarter 2016, doi: 10.1109/COMST.2016.2565566.
 
-![GFDM](figures/GFDM.png)
+>A simplified implementation of GFDM transmitter
+
+```mermaid
+graph LR
+    0(( )) --"s[n]"--> 1["IFFT (N)<br/>and<br/>expand"]
+    1 --> dot(("."))
+    p((p)) --> dot
+    dot --> 2[circular shift<br/>and<br/>accumulate]
+    2 --> 3[add CP<br/>and<br/>serialize]
+    3 --"x[n]"--> 4(( ))
+```
 
 Moreover, O-OFDM, a kind of improvement OFDM waveforms are a promising modulation[^Elgala] for Visible light communications (VLC) technology, which permits the exploitation of light-emitting diode (LED) luminaries for simultaneous illumination and broadband wireless communication.
 
-[^Elgala]:. Hany Elgala and Thomas D. C. Little, "Reverse polarity optical-OFDM (RPO-OFDM): dimming compatible OFDM for gigabit VLC links," Opt. Express 21, 24288-24299 (2013)
+[^Elgala]: Hany Elgala and Thomas D. C. Little, "Reverse polarity optical-OFDM (RPO-OFDM): dimming compatible OFDM for gigabit VLC links," Opt. Express 21, 24288-24299 (2013)
 
 ---
 
@@ -244,9 +259,10 @@ Thirdly, OFDM can robust against intersymbol interference(ISI). ISI is a form of
 In an OFDM system, the entire channel is divided into many narrow subchannels, which are utilized in parallel transmission, thereby increasing the symbol duration and reducing the ISI. Therefore, OFDM is an effective technique for combating multipath fading and for high-bit-rate transmission over mobile wireless channels.
 
 Besides, because of the longer duration of symbols, the OFDM system can alleviate the effect of impulse noise.
-  >When an OFDM system is designed so that there is neither interchannel interference (ICI) nor ISI, the computationally efficient fast Fourier transform (FFT) can be applied to decouple subchannels and the channel equalization is achieved simply by a complex scalar for each independent subchannel.[^Sun]
-  >
-  [^Sun]:Yi Sun and Lang Tong, "Bandwidth efficient wireless OFDM," Conference Record of Thirty-Second Asilomar Conference on Signals, Systems and Computers (Cat. No.98CH36284), Pacific Grove, CA, 1998, pp. 78-82 vol.1, doi: 10.1109/ACSSC.1998.750831.
+
+>When an OFDM system is designed so that there is neither interchannel interference (ICI) nor ISI, the computationally efficient fast Fourier transform (FFT) can be applied to decouple subchannels and the channel equalization is achieved simply by a complex scalar for each independent subchannel.[^Sun]
+
+[^Sun]:Yi Sun and Lang Tong, "Bandwidth efficient wireless OFDM," Conference Record of Thirty-Second Asilomar Conference on Signals, Systems and Computers (Cat. No.98CH36284), Pacific Grove, CA, 1998, pp. 78-82 vol.1, doi: 10.1109/ACSSC.1998.750831.
 
 In addition, OFDM technology can easily adapt to severe channel conditions without complex time-domain equalization. This is because OFDM can dynamically adapt to it and ensure continuous and successful communication, no matter the changes in the ability of data transmission.
 
@@ -256,8 +272,7 @@ And comparing to traditional FDM, OFDM doesn't  required tuned sub-channel recei
 
 ### Disadvantages
 
-1. The OFDM signal has a noise like amplitude with a very large dynamic range; hence it requires RF power
-amplifiers with a high peak to average power ratio.
+1. The OFDM signal has a noise like amplitude with a very large dynamic range; hence it requires RF power amplifiers with a high peak to average power ratio.
 
 2. It is more sensitive to carrier frequency offset and drift than single carrier systems are due to leakage of the DFT.
 
