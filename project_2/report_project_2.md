@@ -87,6 +87,56 @@ yh = filter(B, A, x_am);
 
 ## Receiver Design and Analysis
 
+### Receiver RF Front-End & ADC (Block 4)
+
+The process diagram of the design of receiver RF front-end with ADC(Block 4) is shown below.
+
+```mermaid
+graph LR
+    1["CT signal<br/>after actual<br/>wireless<br/>channel h(t)"]
+    cos[Multiply with<br/>2cosωt]
+    sin[Multiply with<br/>2sinωt]
+
+    1 ==> cos
+    1 ==> sin
+    cos ==> LPFup((LPF))
+    sin ==> LPFlow((LPF))
+
+    xr{{"[xr(t) * h(t)]"}}
+    xi{{"[xi(t) * h(t)]"}}
+
+    LPFup ==> xr ==> ADC
+    LPFlow ==> xi ==> ADC
+
+    ADC["Integrator<br/>(ADC)"] ==> y{{"ycp[n]"}}
+```
+
+Firstly, we use coherent demodulation, to divide the real part and image part of the signal. Because we modulate the signal in block 3 by multiplying sine and cosine wave, we can demodulate it by doing this inversely. After multiplying with $2\sin\omega_ct$ and $2\cos\omega_ct$ separately, the analytical result is shown as below.
+
+$$
+\begin{cases}
+2\cos\omega_ct[x_r(t)\cos\omega_ct + x_i(t)\sin\omega_ct]=
+x_r(t) + x_r(t)\cos{2\omega}_ct + x_i(t)\sin{2\omega}_ct \\
+2\sin\omega_ct[x_r(t)cos\omega_ct + x_i(t)\sin\omega_ct] =
+x_i(t) - x_i(t)\cos{2\omega}_ct + x_r(t)\sin{2\omega}_ct
+\end{cases}
+$$
+
+We use LPF to get the real and imaginary part of $x(t)$ and add them together as $x_r(t) + x_i(t)i$ to get $y(t)$, which still contains the CP. Then we use integrator as ADC part to accumulate the received power and generate DT signal $y_\text{CP}[n]$.
+
+$$
+\begin{aligned}
+y_\text{int}(t) & =
+\frac{1}{T} \int_{t - T}^{t} y_{\text{dem}(\tau)}\mathop{d\tau} \\
+y[n] & =
+y_\text{int}(nT) =
+\frac{1}{T} \int_{(n-1)T}^{nT} y_{\text{dem}(\tau)}\mathop{d\tau} =
+\frac{1}{T} \int_{(n-1)T}^{nT}{x_c(\tau) h(\tau)}\mathop{d\tau}
+\end{aligned}
+$$
+
+Finally, we need to remove the CP and get the result $y[n]$, which corresponds to the convolution of $x[n]$ and $h[n]$.
+
 ---
 
 ## Simulations
