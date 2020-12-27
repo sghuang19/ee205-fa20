@@ -82,7 +82,6 @@ The signal is passed through which.
 ```matlab
 yh = filter(B, A, x_am);
 ```
-
 ---
 
 ## Receiver Design and Analysis
@@ -299,9 +298,9 @@ Moreover, O-OFDM, a kind of improvement OFDM waveforms are a promising modulatio
 
 ### Advantages
 
-First of all, the biggest advantages of OFDM is to resist frequency selective fading or narrowband interference. Since OFDM is a multi-carrier system, only a small part of subcarrier and the relating information will have the problems of being affected when the frequency selective fading occurs. However, if we use traditional single carrier system, the effects will be "amplified" and cause the whole system to be influence and a large amount of of information will be lost or disturbed. Therefore, on a whole, using OFDM is much better for protecting the information and signals transmitting in these waveforms.
+First of all, the biggest advantages of OFDM is to resist frequency selective fading or narrowband interference. Since OFDM is a multi-carrier system, only a small part of subcarrier and the relating information will have the problems of being affected when the frequency selective fading occurs. However, if we use traditional single carrier system, the effects will be "amplified" and cause the whole system to be influenced and a large amount of information will be lost or disturbed. Therefore, on a whole, using OFDM is much better for protecting the information and signals transmitting in these waveforms.
 
-Secondly, being a multi-carrier, OFDM can carrying much information and these satisfy the contemporary society needs for faster and more efficient information transmission.
+Secondly, being a multi-carrier, OFDM can carrying much information ，which satisfies the contemporary society needs for faster and more efficient information transmission.
 
 Thirdly, OFDM can robust against intersymbol interference(ISI). ISI is a form of distortion of a signal in which one symbol interferes with subsequent symbols. This is an unwanted phenomenon as the previous symbols have similar effect as noise, thus making the communication less reliable. The spreading of the pulse beyond its allotted time interval causes it to interfere with neighboring pulses.
 
