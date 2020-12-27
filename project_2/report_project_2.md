@@ -86,22 +86,6 @@ yh = filter(B, A, x_am);
 
 ## Receiver Design and Analysis
 
-
-### Elaborate on the relation between h(t) and h[n]
-
-Firstly, we will discuss the relation between h(t) and h[n], which can be inferred from Block3 and integral sampling. According to integral sampling:
-
-$y_{int}\ (t)=\frac{1}{T}\int(t-T)^t y_{dem}(\tau) d\tau$
-
-Then signal passed the wireless channel after demodulation:
-
-
-If the modulation process is ignored, the process of the convolution gate function can be written as:
-
-$x_c\left(t\right)\ast\ h(t)$
-$=\ x_p\left(t\right)\ast\ c\left(t\right)\ast h\left(t\right)$
-$=\left[\sum\ x\left[n\right]\delta\left(t-nT\right)\right]\ast c\left(t\right)\ast h(t)
-$
 ### Receiver RF Front-End & ADC (Block 4)
 
 The process diagram of the design of receiver RF front-end with ADC(Block 4) is shown below.
@@ -151,6 +135,57 @@ y_\text{int}(nT) =
 $$
 
 Finally, we need to remove the CP and get the result $y[n]$, which corresponds to the convolution of $x[n]$ and $h[n]$.
+
+### Elaborate on the Relation between $h(t)$ and $h[n]$
+
+Firstly, we will discuss the relation between $h(t)$ and $h[n]$, which can be inferred from Block3 and integral sampling. According to integral sampling:
+
+$$
+y_\text{int}(t) =
+\frac{1}{T} \int_{t-T}^t y_{dem}(\tau) d\tau
+$$
+
+Then signal passed the wireless channel after demodulation:
+
+$$
+y[n] =
+y_\text{int}(nT) =
+\frac{1}{T} \int_{(n-1)T}^{nT} y_{\text{dem}(\tau)}\mathop{d\tau} =
+\frac{1}{T} \int_{(n-1)T}^{nT} x_c(\tau) h(\tau)\mathop{d\tau}
+$$
+
+If the modulation process is ignored, the process of the convolution gate function can be written as:
+
+$$
+x_c(t) * h(t) =
+x_p(t) *c(t)* h(t) =
+\left[\sum_x[n]\delta(t - nT)\right] *c(t)* h(t)
+$$
+
+And since $y[n] = h[n] * x[n]$, we have
+
+$$
+\begin{aligned}
+y[n] & =
+\frac{1}{T} \int_{(n-1)T}^{nT} x_c(\tau) *h(\tau)\mathop{d\tau} \\ & =
+\frac{1}{T} \int_{(n-1)T}^{nT}
+\left[\sum_n x[n]\delta(\tau - nT)\right]* c(\tau) *h(\tau)\mathop{d\tau} \\ & =
+x[n]* \frac{1}{T}\int_{(n-1)T}^{nT} c(\tau - nT) * h(\tau)\mathop{d\tau}
+\end{aligned}
+$$
+
+Thus, we obtain the relation:
+
+$$
+h[n] =
+\frac{1}{T} \int_{(n - 1)T}^{nT} c(\tau - nT) * h(\tau)\mathop{d\tau}
+$$
+
+The plot is shown below.
+
+![h(t)](figures/ht.png)
+
+![h[n]](figures/hn.png)
 
 ### Determining the Length of CP  
 
@@ -221,8 +256,6 @@ Then we can recover X since `X_recover_N=Y_recover_N./H;`
 ---
 
 ## Discussions
-
----
 
 ### Applications
 
