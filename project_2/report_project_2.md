@@ -15,9 +15,73 @@ The complete resources, including report in `.pdf` and `.md` format, as well as 
 
 ## Abstract
 
-In this project, we implemented the whole process of OFDM in signal transmission with MATLAB.
+In this project, we implemented the whole process of OFDM in signal transmission with MATLAB, including
+
+- the generation of signal
+- loading signal in frequency domain
+- adding cyclic prefix
+- transmission in the channel
+- remove the cyclic prefix in receiver-side
+- recover the original signal in time domain
 
 ## Introduction
+
+In our practice, the baseband, or carrier signal we choses is a sine wave and a cosine wave signal. The sine wave is for the real part, and the cosine wave is for the imaginary part.
+
+```matlab
+% time-step
+dt = 1e-9;
+% carrier signal frequency
+wc = 100e6;
+
+t = (1:length(x_sq)) * dt;
+sin1 = sin(2 * pi * wc * t);
+cos1 = cos(2 * pi * wc * t);
+```
+
+The signals to be transferred are firstly loaded in the frequency domain with `ifft()` function.
+
+```matlab
+X = xr + 1i * xi;
+x = ifft(X);
+```
+
+Then, a cyclic prefix is added to the signal loaded in the frequency domain to obtain OFDM features.
+
+```matlab
+x_cp = [x(N - lcp + 1:N), x];
+```
+
+After that, digital-analog-convert is done. Also, reshape the sampled impulse series into zero-order held square wave series.
+
+```matlab
+x_cp_ct = upsample(x_cp, 1000);
+x_sq = reshape(repmat(x_cp, 1000, 1), 1, []);
+```
+
+In this process, the signal is upsampled by inserting $1000 - 1 = 999$ zeros between the samples of the DT signal.
+
+Next, do amplitude modulation.
+
+```matlab
+t = (1:length(x_sq)) * dt;
+sin1 = sin(2 * pi * wc * t);
+cos1 = cos(2 * pi * wc * t);
+x_am = cos1 .* real(x_sq) + sin1 .* imag(x_sq);
+```
+
+The transmission channel is defined as
+
+```matlab
+A = 1;
+B = [0.5 zeros(1, 1.5e3 - 1) 0.4 zeros(1, 1e3 - 1) 0.35 zeros(1, 0.5e3 - 1) 0.3];
+```
+
+The signal is passed through which.
+
+```matlab
+yh = filter(B, A, x_am);
+```
 
 ---
 
