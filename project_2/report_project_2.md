@@ -109,8 +109,6 @@ Moreover, O-OFDM, a kind of improvement OFDM waveforms are a promising modulatio
 
 1. Its ability to precisely tailor the transmitted signal to the frequency characteristics of the channel.[^Ballal]
 
-[^Ballal]:
-
 2. It reduces ISI and IFI through use of a cyclic prefix and fading caused by multipath propagation.
 
 3. Channel equalization becomes simpler than by using
@@ -125,6 +123,8 @@ systems.
 
 7. OFDM is computationally capable by using FFT
 techniques to implement the modulation and demodulation functions.
+
+[^Ballal]:Beena R. Ballal, Ankit Chadha, Neha Satam, "Orthogonal Frequency Division Multiplexing and its Applications", International Journal of Science and Research (IJSR),  Volume 2 Issue 1, January 2013, 325 - 328
 
 ---
 
