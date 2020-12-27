@@ -180,43 +180,43 @@ xi = sqrt(2) * round(rand(1, N)) - sqrt(2) / 2;
 
 The plot for our signal is as below.
 
-![InputSignal](figures/figure1.png)
+![InputSignal](figures/Original_Signal.png)
 
 Then we use `ifft()` to produce the signal in time domain.  
 
-![OFDM-Signal](figures/figure2.png)
+![OFDM-Signal](figures/OFDM_Signal.png)
 
 After that we add `cp` with length of 4 to this signal.
 
-![OFDM-Signal+cp](figures/figure3.png)
+![OFDM-Signal+cp](figures/OFDM_SIgnal+cp.png)
 
 We then produce the impulse result of OFDM signal and then use square signal to shape it.
 
-![OFDM-Signal+cp](figures/figure4.png)
+![CT-impulse-square](figures/CT_impulse_square.png)
 
 Then we add carrier signal to the OFDM signal.
 
-![OFDM-Signal+cp](figures/figure5.png)
+![CT-AM-Signal](figures/CT_AM_Signal.png)
 
 After that, we simulate the process of real wireless channel.
 
-![OFDM-Signal+cp](figures/figure6.png)
+![CT-transmit](figures/CT_transmit.png)
 
 Then the signal experience a process of demodulation and pass through a LPF.
 
-![OFDM-Signal+cp](figures/figure7.png)
+![demodulation](figures/demodulation.png)
 
 Sampling:
 
-![OFDM-Signal+cp](figures/figure8.png)
+![sampling](figures/sampling.png)
 
 Then we remove cp.
 
-![OFDM-Signal+cp](figures/figure9.png)
+![remove-cp](figures/remove_cp.png)
 
 Then we can recover X since `X_recover_N=Y_recover_N./H;`
 
-![OFDM-Signal+cp](figures/figure10.png)
+![OFDM-Signal+cp](figures/recover.png)
 
 ---
 
