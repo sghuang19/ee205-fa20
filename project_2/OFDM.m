@@ -196,14 +196,15 @@ X_recover_N = Y_recover_N ./ H;
 
 figure(10)
 subplot(211)
-stem(real(X_recover_N))
+stem(real(X_recover_N), '*')
 hold on
 stem(xr)
 xlabel('n')
 legend('\Re\{x_{recover}[n]\}', '\Re\{x[n]\}')
+hold off
 
 subplot(212)
-stem(imag(X_recover_N))
+stem(imag(X_recover_N), '*')
 hold on
 stem(xi)
 xlabel('n')
